@@ -60,13 +60,7 @@ class GameViewController: UIViewController
 		guard let transform = sceneView.pointOfView?.transform else {return}
 		let location = SCNVector3(transform.m41, transform.m42, transform.m43)
 		let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
-		let base = SCNNode(geometry: SCNSphere(radius: 0.5))
-		base.name = "Base"
-		base.position = location + (3.0*orientation)
-		base.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-		base.geometry?.firstMaterial?.specular.contents = UIColor.purple
-		let body = SCNPhysicsBody.static()
-		base.physicsBody = body
+		let base = BaseNode(position: location + (3.0*orientation))
 		sceneView.scene.rootNode.addChildNode(base)
 	}
 	
@@ -125,27 +119,16 @@ extension GameViewController: ARSessionDelegate
 extension GameViewController: SCNPhysicsContactDelegate
 {
 	func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-		print("qqq")
-		
-		if !blockShoot
+		var node = SCNNode()
+		if contact.nodeA.name == baseNodeName
 		{
-			blockShoot = true
-			DispatchQueue.main.async {
-				var node = SCNNode()
-				if contact.nodeA.name == "Base"
-				{
-					node = contact.nodeA
-				}
-				else if contact.nodeB.name == "Base"
-				{
-					node = contact.nodeB
-				}
-				node.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
-				DispatchQueue.main.asyncAfter(deadline: .now()+0.1, execute: {
-					node.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-					self.blockShoot = false
-				})
-			}
+			node = contact.nodeA
 		}
+		else if contact.nodeB.name == baseNodeName
+		{
+			node = contact.nodeB
+		}
+		guard let baseNode = node as? BaseNode else {return}
+		baseNode.getHurt()
 	}
 }
