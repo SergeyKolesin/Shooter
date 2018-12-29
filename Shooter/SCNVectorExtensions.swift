@@ -17,3 +17,5 @@ func *(left: Float, right: SCNVector3) -> SCNVector3
 {
 	return SCNVector3(left*right.x, left*right.y, left*right.z)
 }
+
+

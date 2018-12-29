@@ -7,18 +7,15 @@
 //
 
 import ARKit
-
-enum BitMaskCategory: Int
-{
-	case bullet = 2
-	case base = 3
-}
+import AudioToolbox
 
 class GameViewController: UIViewController
 {
 	
+	@IBOutlet weak var scoreLabel: UILabel!
 	@IBOutlet weak var sceneView: ARSCNView!
-	var blockShoot = false
+	var gameTimer: Timer!
+	var destroyedBaseCounter = 0
 	
 	override func viewDidLoad()
 	{
@@ -61,7 +58,26 @@ class GameViewController: UIViewController
 		let location = SCNVector3(transform.m41, transform.m42, transform.m43)
 		let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
 		let base = BaseNode(position: location + (3.0*orientation))
+		base.delegate = self
 		sceneView.scene.rootNode.addChildNode(base)
+		
+		gameTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(addBase), userInfo: nil, repeats: true)
+	}
+	
+	@objc func addBase()
+	{
+		DispatchQueue.main.async {
+			guard let transform = self.sceneView.pointOfView?.transform else {return}
+			let location = SCNVector3(transform.m41, transform.m42, transform.m43)
+			let x = randomNumber(firstNum: -5.0, secondNum: 5.0)
+			let y = randomNumber(firstNum: -5.0, secondNum: 5.0)
+			let z = randomNumber(firstNum: -5.0, secondNum: 5.0)
+			let randomVector = SCNVector3(x, y, z)
+			let position = location + randomVector
+			let base = BaseNode(position: position)
+			base.delegate = self
+			self.sceneView.scene.rootNode.addChildNode(base)
+		}
 	}
 	
 	// MARK: Gestures
@@ -89,7 +105,7 @@ class GameViewController: UIViewController
 		bullet.geometry?.firstMaterial?.specular.contents = UIColor.purple
 		let body = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: bullet, options: nil))
 		body.isAffectedByGravity = false
-		body.velocity = 2.0*orientation
+		body.velocity = 4.0*orientation
 //		body.categoryBitMask = BitMaskCategory.bullet.rawValue
 		body.contactTestBitMask	= body.collisionBitMask
 		bullet.physicsBody =  body
@@ -130,5 +146,21 @@ extension GameViewController: SCNPhysicsContactDelegate
 		}
 		guard let baseNode = node as? BaseNode else {return}
 		baseNode.getHurt()
+	}
+}
+
+extension GameViewController: BaseNodeDelegate
+{
+	func baseDidDestroyed(_ node: BaseNode)
+	{
+		DispatchQueue.main.async {
+			self.destroyedBaseCounter += 1
+			self.scoreLabel.text = String(self.destroyedBaseCounter)
+			AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+			if self.destroyedBaseCounter > 2
+			{
+				self.dismiss(animated: false, completion: nil)
+			}
+		}
 	}
 }

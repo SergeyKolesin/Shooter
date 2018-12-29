@@ -54,6 +54,12 @@
                                     <constraint firstAttribute="height" constant="1" id="ic8-Zm-QeC"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWJ-KM-KDr">
+                                <rect key="frame" x="181" y="40" width="13.5" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QGA-ed-xh6">
                                 <rect key="frame" x="187" y="333.5" width="1" height="20"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -67,13 +73,16 @@
                         <constraints>
                             <constraint firstItem="ecM-yw-hLz" firstAttribute="centerY" secondItem="gpu-sp-YrA" secondAttribute="centerY" id="DA4-6A-y9Q"/>
                             <constraint firstItem="ecM-yw-hLz" firstAttribute="centerX" secondItem="gpu-sp-YrA" secondAttribute="centerX" id="GyS-gr-Zq1"/>
+                            <constraint firstItem="GWJ-KM-KDr" firstAttribute="top" secondItem="gpu-sp-YrA" secondAttribute="top" constant="20" id="HuJ-ah-k7f"/>
                             <constraint firstItem="QGA-ed-xh6" firstAttribute="centerX" secondItem="gpu-sp-YrA" secondAttribute="centerX" id="KsP-2S-bZf"/>
                             <constraint firstItem="QGA-ed-xh6" firstAttribute="centerY" secondItem="gpu-sp-YrA" secondAttribute="centerY" id="rVp-cM-hIe"/>
+                            <constraint firstItem="GWJ-KM-KDr" firstAttribute="centerX" secondItem="gpu-sp-YrA" secondAttribute="centerX" id="ttg-DT-ffS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gpu-sp-YrA"/>
                     </view>
                     <connections>
                         <outlet property="sceneView" destination="uBj-fD-aP6" id="SMz-QY-NKH"/>
+                        <outlet property="scoreLabel" destination="GWJ-KM-KDr" id="Z8h-2Y-1g7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTg-OU-x98" userLabel="First Responder" sceneMemberID="firstResponder"/>

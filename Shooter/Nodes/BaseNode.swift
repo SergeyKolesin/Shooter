@@ -10,9 +10,14 @@ import ARKit
 
 let baseNodeName = "BaseNodeName"
 
+protocol BaseNodeDelegate: class
+{
+	func baseDidDestroyed(_ node: BaseNode)
+}
+
 class BaseNode: SCNNode
 {
-	
+	weak var delegate: BaseNodeDelegate?
 	let maxHealth = 3
 	var currentHealth = 3
 	var blockHurt = false
@@ -57,6 +62,7 @@ class BaseNode: SCNNode
 				effectNode.position = position
 				parent?.addChildNode(effectNode)
 				removeFromParentNode()
+				delegate?.baseDidDestroyed(self)
 			}
 		}
 	}
