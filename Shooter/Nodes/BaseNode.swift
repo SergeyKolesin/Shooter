@@ -13,11 +13,13 @@ let baseNodeName = "BaseNodeName"
 protocol BaseNodeDelegate: class
 {
 	func baseDidDestroyed(_ node: BaseNode)
+	func getUserPosition() -> SCNVector3
 }
 
 class BaseNode: SCNNode
 {
 	weak var delegate: BaseNodeDelegate?
+	var shootTimer: Timer!
 	let maxHealth = 3
 	var currentHealth = 3
 	var blockHurt = false
@@ -28,10 +30,23 @@ class BaseNode: SCNNode
 		geometry = SCNSphere(radius: 0.5)
 		name = baseNodeName
 		self.position = position
-		geometry?.firstMaterial?.diffuse.contents = UIColor.red
+		geometry?.firstMaterial?.diffuse.contents = UIColor.green
 		geometry?.firstMaterial?.specular.contents = UIColor.purple
 		let body = SCNPhysicsBody.static()
 		physicsBody = body
+		shootTimer = Timer.scheduledTimer(timeInterval: 4.3, target: self, selector: #selector(shoot), userInfo: nil, repeats: true)
+	}
+	
+	@objc func shoot()
+	{
+		guard let delegate = delegate else {return}
+		let direction = delegate.getUserPosition() - position
+		let module = direction.module()
+		let velocity = 2 * (1/module) * direction
+		
+		let bulletPosition = position + 0.7 * (1/module) * direction
+		let bullet = Bullet(position: bulletPosition, velocity: velocity)
+		parent?.addChildNode(bullet)
 	}
 	
 	func getHurt()
@@ -46,7 +61,7 @@ class BaseNode: SCNNode
 				DispatchQueue.main.async {
 					self.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
 					DispatchQueue.main.asyncAfter(deadline: .now()+0.1, execute: {
-						self.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+						self.geometry?.firstMaterial?.diffuse.contents = UIColor.green
 						self.blockHurt = false
 					})
 				}
@@ -55,7 +70,6 @@ class BaseNode: SCNNode
 			{
 				guard let remoteEffect = SCNParticleSystem(named: "Media.scnassets/Fire.scnp", inDirectory: nil) else {return}
 				remoteEffect.loops = false
-//				remoteEffect.particleLifeSpan = 4
 				remoteEffect.emitterShape = geometry
 				let effectNode = SCNNode()
 				effectNode.addParticleSystem(remoteEffect)

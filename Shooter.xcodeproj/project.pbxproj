@@ -16,6 +16,8 @@
 		FE33751521D64A05005F1857 /* ShooterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE33751421D64A05005F1857 /* ShooterUITests.swift */; };
 		FE33752321D64A93005F1857 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE33752221D64A93005F1857 /* MainScreenViewController.swift */; };
 		FE33752521D64BD5005F1857 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE33752421D64BD5005F1857 /* GameViewController.swift */; };
+		FE9331E121E5E862009DAA22 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9331E021E5E862009DAA22 /* Bullet.swift */; };
+		FE9331E321E5ED87009DAA22 /* UserNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9331E221E5ED87009DAA22 /* UserNode.swift */; };
 		FEE7086E21D6554C0003D2CE /* SCNVectorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE7086D21D6554C0003D2CE /* SCNVectorExtensions.swift */; };
 		FEE7087121D762DB0003D2CE /* BaseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE7087021D762DB0003D2CE /* BaseNode.swift */; };
 		FEE7087321D78DE70003D2CE /* Media.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = FEE7087221D78DE70003D2CE /* Media.scnassets */; };
@@ -55,6 +57,8 @@
 		FE33751621D64A05005F1857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE33752221D64A93005F1857 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		FE33752421D64BD5005F1857 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		FE9331E021E5E862009DAA22 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		FE9331E221E5ED87009DAA22 /* UserNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNode.swift; sourceTree = "<group>"; };
 		FEE7086D21D6554C0003D2CE /* SCNVectorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVectorExtensions.swift; sourceTree = "<group>"; };
 		FEE7087021D762DB0003D2CE /* BaseNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNode.swift; sourceTree = "<group>"; };
 		FEE7087221D78DE70003D2CE /* Media.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Media.scnassets; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				FEE7087021D762DB0003D2CE /* BaseNode.swift */,
+				FE9331E021E5E862009DAA22 /* Bullet.swift */,
+				FE9331E221E5ED87009DAA22 /* UserNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -286,10 +292,12 @@
 				FEE7086E21D6554C0003D2CE /* SCNVectorExtensions.swift in Sources */,
 				FEE7087921D795E60003D2CE /* Helpers.swift in Sources */,
 				FE33752521D64BD5005F1857 /* GameViewController.swift in Sources */,
+				FE9331E321E5ED87009DAA22 /* UserNode.swift in Sources */,
 				FEE7087121D762DB0003D2CE /* BaseNode.swift in Sources */,
 				FE3374FA21D64A03005F1857 /* Shooter.xcdatamodeld in Sources */,
 				FE3374F221D64A03005F1857 /* AppDelegate.swift in Sources */,
 				FE33752321D64A93005F1857 /* MainScreenViewController.swift in Sources */,
+				FE9331E121E5E862009DAA22 /* Bullet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

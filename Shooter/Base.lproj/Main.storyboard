@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,12 +14,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainScreenViewController" customModule="Shooter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTZ-St-Qm3">
-                                <rect key="frame" x="148" y="318" width="78" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTZ-St-Qm3">
+                                <rect key="frame" x="294.5" y="172.5" width="78" height="30"/>
                                 <state key="normal" title="Start Game"/>
                                 <connections>
                                     <segue destination="PHQ-vO-Zde" kind="show" identifier="ShowGameVC" id="wKf-ke-c7a"/>
@@ -27,6 +26,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="PTZ-St-Qm3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1iV-hY-bch"/>
+                            <constraint firstItem="PTZ-St-Qm3" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="kaI-SX-vjL"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -39,15 +42,14 @@
             <objects>
                 <viewController id="PHQ-vO-Zde" customClass="GameViewController" customModule="Shooter" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fOE-1N-7hk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uBj-fD-aP6">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBj-fD-aP6">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                             </arscnView>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ecM-yw-hLz">
-                                <rect key="frame" x="177.5" y="343" width="20" height="1"/>
+                                <rect key="frame" x="323.5" y="187" width="20" height="1"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="Zh4-ou-F0L"/>
@@ -55,39 +57,52 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWJ-KM-KDr">
-                                <rect key="frame" x="181" y="40" width="13.5" height="25.5"/>
+                                <rect key="frame" x="327" y="20" width="13.5" height="25.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QGA-ed-xh6">
-                                <rect key="frame" x="187" y="333.5" width="1" height="20"/>
+                                <rect key="frame" x="333" y="177.5" width="1" height="20"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="0QA-fh-Z0p"/>
                                     <constraint firstAttribute="width" constant="1" id="nfv-0r-CV2"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hil-Kr-2M5">
+                                <rect key="frame" x="322" y="329" width="23" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ecM-yw-hLz" firstAttribute="centerY" secondItem="gpu-sp-YrA" secondAttribute="centerY" id="DA4-6A-y9Q"/>
                             <constraint firstItem="ecM-yw-hLz" firstAttribute="centerX" secondItem="gpu-sp-YrA" secondAttribute="centerX" id="GyS-gr-Zq1"/>
+                            <constraint firstItem="uBj-fD-aP6" firstAttribute="trailing" secondItem="gpu-sp-YrA" secondAttribute="trailing" id="Hfx-C6-sWl"/>
                             <constraint firstItem="GWJ-KM-KDr" firstAttribute="top" secondItem="gpu-sp-YrA" secondAttribute="top" constant="20" id="HuJ-ah-k7f"/>
                             <constraint firstItem="QGA-ed-xh6" firstAttribute="centerX" secondItem="gpu-sp-YrA" secondAttribute="centerX" id="KsP-2S-bZf"/>
+                            <constraint firstItem="uBj-fD-aP6" firstAttribute="bottom" secondItem="gpu-sp-YrA" secondAttribute="bottom" id="Mbr-c8-0vp"/>
+                            <constraint firstItem="gpu-sp-YrA" firstAttribute="bottom" secondItem="hil-Kr-2M5" secondAttribute="bottom" constant="20" id="Tho-IF-UXx"/>
+                            <constraint firstItem="uBj-fD-aP6" firstAttribute="top" secondItem="gpu-sp-YrA" secondAttribute="top" id="bKm-x6-xGK"/>
+                            <constraint firstItem="uBj-fD-aP6" firstAttribute="leading" secondItem="gpu-sp-YrA" secondAttribute="leading" id="bfB-Y1-van"/>
+                            <constraint firstItem="hil-Kr-2M5" firstAttribute="centerX" secondItem="gpu-sp-YrA" secondAttribute="centerX" id="eOj-LY-c8T"/>
                             <constraint firstItem="QGA-ed-xh6" firstAttribute="centerY" secondItem="gpu-sp-YrA" secondAttribute="centerY" id="rVp-cM-hIe"/>
                             <constraint firstItem="GWJ-KM-KDr" firstAttribute="centerX" secondItem="gpu-sp-YrA" secondAttribute="centerX" id="ttg-DT-ffS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gpu-sp-YrA"/>
                     </view>
                     <connections>
+                        <outlet property="healthLabel" destination="hil-Kr-2M5" id="ycC-zE-FjH"/>
                         <outlet property="sceneView" destination="uBj-fD-aP6" id="SMz-QY-NKH"/>
                         <outlet property="scoreLabel" destination="GWJ-KM-KDr" id="Z8h-2Y-1g7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTg-OU-x98" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="917.60000000000002" y="130.88455772113943"/>
+            <point key="canvasLocation" x="917.09145427286364" y="130.40000000000001"/>
         </scene>
     </scenes>
 </document>
