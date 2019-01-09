@@ -14,6 +14,7 @@ let maxHealth = 10
 class GameViewController: UIViewController
 {
 	
+	@IBOutlet weak var helperView: UIView!
 	@IBOutlet weak var healthLabel: UILabel!
 	@IBOutlet weak var scoreLabel: UILabel!
 	@IBOutlet weak var sceneView: ARSCNView!
@@ -179,6 +180,11 @@ extension GameViewController: UserNodeDelegate
 	{
 		healthLabel.text = String(node.currentHealth)
 		AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+		UIView.animate(withDuration: 0.2, animations: {
+			self.helperView.alpha = 1
+		}) { (_) in
+			self.helperView.alpha = 0
+		}
 	}
 	
 	func userDidDestroyed(_ node: UserNode)

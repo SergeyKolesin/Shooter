@@ -48,6 +48,10 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBj-fD-aP6">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                             </arscnView>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EhG-ma-hU4">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ecM-yw-hLz">
                                 <rect key="frame" x="323.5" y="187" width="20" height="1"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -79,6 +83,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="EhG-ma-hU4" firstAttribute="leading" secondItem="gpu-sp-YrA" secondAttribute="leading" id="6sN-bM-0Ks"/>
                             <constraint firstItem="ecM-yw-hLz" firstAttribute="centerY" secondItem="gpu-sp-YrA" secondAttribute="centerY" id="DA4-6A-y9Q"/>
                             <constraint firstItem="ecM-yw-hLz" firstAttribute="centerX" secondItem="gpu-sp-YrA" secondAttribute="centerX" id="GyS-gr-Zq1"/>
                             <constraint firstItem="uBj-fD-aP6" firstAttribute="trailing" secondItem="gpu-sp-YrA" secondAttribute="trailing" id="Hfx-C6-sWl"/>
@@ -86,16 +91,20 @@
                             <constraint firstItem="QGA-ed-xh6" firstAttribute="centerX" secondItem="gpu-sp-YrA" secondAttribute="centerX" id="KsP-2S-bZf"/>
                             <constraint firstItem="uBj-fD-aP6" firstAttribute="bottom" secondItem="gpu-sp-YrA" secondAttribute="bottom" id="Mbr-c8-0vp"/>
                             <constraint firstItem="gpu-sp-YrA" firstAttribute="bottom" secondItem="hil-Kr-2M5" secondAttribute="bottom" constant="20" id="Tho-IF-UXx"/>
+                            <constraint firstItem="EhG-ma-hU4" firstAttribute="bottom" secondItem="gpu-sp-YrA" secondAttribute="bottom" id="VvS-Eh-gyt"/>
                             <constraint firstItem="uBj-fD-aP6" firstAttribute="top" secondItem="gpu-sp-YrA" secondAttribute="top" id="bKm-x6-xGK"/>
                             <constraint firstItem="uBj-fD-aP6" firstAttribute="leading" secondItem="gpu-sp-YrA" secondAttribute="leading" id="bfB-Y1-van"/>
                             <constraint firstItem="hil-Kr-2M5" firstAttribute="centerX" secondItem="gpu-sp-YrA" secondAttribute="centerX" id="eOj-LY-c8T"/>
                             <constraint firstItem="QGA-ed-xh6" firstAttribute="centerY" secondItem="gpu-sp-YrA" secondAttribute="centerY" id="rVp-cM-hIe"/>
+                            <constraint firstItem="EhG-ma-hU4" firstAttribute="top" secondItem="gpu-sp-YrA" secondAttribute="top" id="rgx-mb-GLH"/>
                             <constraint firstItem="GWJ-KM-KDr" firstAttribute="centerX" secondItem="gpu-sp-YrA" secondAttribute="centerX" id="ttg-DT-ffS"/>
+                            <constraint firstItem="EhG-ma-hU4" firstAttribute="trailing" secondItem="gpu-sp-YrA" secondAttribute="trailing" id="wAx-hq-q3h"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gpu-sp-YrA"/>
                     </view>
                     <connections>
                         <outlet property="healthLabel" destination="hil-Kr-2M5" id="ycC-zE-FjH"/>
+                        <outlet property="helperView" destination="EhG-ma-hU4" id="m8T-Cd-ilF"/>
                         <outlet property="sceneView" destination="uBj-fD-aP6" id="SMz-QY-NKH"/>
                         <outlet property="scoreLabel" destination="GWJ-KM-KDr" id="Z8h-2Y-1g7"/>
                     </connections>
