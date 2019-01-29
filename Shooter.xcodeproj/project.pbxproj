@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE1D87CD2200390F008D41DD /* Halloween.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FE1D87CC2200390E008D41DD /* Halloween.mp4 */; };
 		FE3374F221D64A03005F1857 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3374F121D64A03005F1857 /* AppDelegate.swift */; };
 		FE3374F721D64A03005F1857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3374F521D64A03005F1857 /* Main.storyboard */; };
 		FE3374FA21D64A03005F1857 /* Shooter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE3374F821D64A03005F1857 /* Shooter.xcdatamodeld */; };
@@ -18,6 +19,7 @@
 		FE33752521D64BD5005F1857 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE33752421D64BD5005F1857 /* GameViewController.swift */; };
 		FE9331E121E5E862009DAA22 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9331E021E5E862009DAA22 /* Bullet.swift */; };
 		FE9331E321E5ED87009DAA22 /* UserNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9331E221E5ED87009DAA22 /* UserNode.swift */; };
+		FECA58BA21E6291A009F3F05 /* MultipeerConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECA58B921E6291A009F3F05 /* MultipeerConnectivityService.swift */; };
 		FEE7086E21D6554C0003D2CE /* SCNVectorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE7086D21D6554C0003D2CE /* SCNVectorExtensions.swift */; };
 		FEE7087121D762DB0003D2CE /* BaseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE7087021D762DB0003D2CE /* BaseNode.swift */; };
 		FEE7087321D78DE70003D2CE /* Media.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = FEE7087221D78DE70003D2CE /* Media.scnassets */; };
@@ -42,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FE1D87CC2200390E008D41DD /* Halloween.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Halloween.mp4; sourceTree = "<group>"; };
 		FE3374EE21D64A03005F1857 /* Shooter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shooter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE3374F121D64A03005F1857 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE3374F621D64A03005F1857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -59,6 +62,7 @@
 		FE33752421D64BD5005F1857 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		FE9331E021E5E862009DAA22 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		FE9331E221E5ED87009DAA22 /* UserNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNode.swift; sourceTree = "<group>"; };
+		FECA58B921E6291A009F3F05 /* MultipeerConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerConnectivityService.swift; sourceTree = "<group>"; };
 		FEE7086D21D6554C0003D2CE /* SCNVectorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVectorExtensions.swift; sourceTree = "<group>"; };
 		FEE7087021D762DB0003D2CE /* BaseNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNode.swift; sourceTree = "<group>"; };
 		FEE7087221D78DE70003D2CE /* Media.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Media.scnassets; sourceTree = "<group>"; };
@@ -90,6 +94,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE1D87CE2200392A008D41DD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FEE7087821D795E60003D2CE /* Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FE1D87D222006EAF008D41DD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FE3374E521D64A03005F1857 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +116,7 @@
 				FE33750821D64A05005F1857 /* ShooterTests */,
 				FE33751321D64A05005F1857 /* ShooterUITests */,
 				FE3374EF21D64A03005F1857 /* Products */,
+				FE1D87D222006EAF008D41DD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +133,9 @@
 		FE3374F021D64A03005F1857 /* Shooter */ = {
 			isa = PBXGroup;
 			children = (
+				FE1D87CE2200392A008D41DD /* Helpers */,
+				FE1D87CC2200390E008D41DD /* Halloween.mp4 */,
+				FECA58B821E62906009F3F05 /* MultipeerConnectivity */,
 				FEE7086F21D762C60003D2CE /* Nodes */,
 				FE3374F121D64A03005F1857 /* AppDelegate.swift */,
 				FE3374F521D64A03005F1857 /* Main.storyboard */,
@@ -124,7 +147,6 @@
 				FE33752421D64BD5005F1857 /* GameViewController.swift */,
 				FEE7086D21D6554C0003D2CE /* SCNVectorExtensions.swift */,
 				FEE7087221D78DE70003D2CE /* Media.scnassets */,
-				FEE7087821D795E60003D2CE /* Helpers.swift */,
 			);
 			path = Shooter;
 			sourceTree = "<group>";
@@ -145,6 +167,14 @@
 				FE33751621D64A05005F1857 /* Info.plist */,
 			);
 			path = ShooterUITests;
+			sourceTree = "<group>";
+		};
+		FECA58B821E62906009F3F05 /* MultipeerConnectivity */ = {
+			isa = PBXGroup;
+			children = (
+				FECA58B921E6291A009F3F05 /* MultipeerConnectivityService.swift */,
+			);
+			path = MultipeerConnectivity;
 			sourceTree = "<group>";
 		};
 		FEE7086F21D762C60003D2CE /* Nodes */ = {
@@ -225,6 +255,11 @@
 				TargetAttributes = {
 					FE3374ED21D64A03005F1857 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 0;
+							};
+						};
 					};
 					FE33750421D64A05005F1857 = {
 						CreatedOnToolsVersion = 10.0;
@@ -262,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEE7087321D78DE70003D2CE /* Media.scnassets in Resources */,
+				FE1D87CD2200390F008D41DD /* Halloween.mp4 in Resources */,
 				FE3374FF21D64A05005F1857 /* LaunchScreen.storyboard in Resources */,
 				FE3374FC21D64A05005F1857 /* Assets.xcassets in Resources */,
 				FE3374F721D64A03005F1857 /* Main.storyboard in Resources */,
@@ -295,6 +331,7 @@
 				FE9331E321E5ED87009DAA22 /* UserNode.swift in Sources */,
 				FEE7087121D762DB0003D2CE /* BaseNode.swift in Sources */,
 				FE3374FA21D64A03005F1857 /* Shooter.xcdatamodeld in Sources */,
+				FECA58BA21E6291A009F3F05 /* MultipeerConnectivityService.swift in Sources */,
 				FE3374F221D64A03005F1857 /* AppDelegate.swift in Sources */,
 				FE33752321D64A93005F1857 /* MainScreenViewController.swift in Sources */,
 				FE9331E121E5E862009DAA22 /* Bullet.swift in Sources */,

@@ -18,6 +18,7 @@ class GameViewController: UIViewController
 	@IBOutlet weak var healthLabel: UILabel!
 	@IBOutlet weak var scoreLabel: UILabel!
 	@IBOutlet weak var sceneView: ARSCNView!
+	var baseTimers = [Timer]()
 	var gameTimer: Timer!
 	var destroyedBaseCounter = 0
 	let userNode = UserNode(position: SCNVector3Zero)
@@ -28,9 +29,13 @@ class GameViewController: UIViewController
 		}
 	}
 	
+	let multipeerService = MultipeerService()
+	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
+		multipeerService.delegate = self
+		multipeerService.startAdvertisingPeer()
 		userNode.delegate = self
 		healthLabel.text = String(userNode.maxHealth)
 		sceneView.autoenablesDefaultLighting = true
@@ -49,10 +54,16 @@ class GameViewController: UIViewController
 		}
 	}
 	
-	func restartSession()
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		pauseSession()
+	}
+	
+	func restartSession(_ initialWorldMap: ARWorldMap? = nil)
 	{
 		pauseSession()
 		let configuration = ARWorldTrackingConfiguration()
+		configuration.initialWorldMap = initialWorldMap
 		let options: ARSession.RunOptions = [.resetTracking, .removeExistingAnchors]
 		sceneView.session.run(configuration, options: options)
 	}
@@ -62,7 +73,18 @@ class GameViewController: UIViewController
 		sceneView.session.pause()
 		sceneView.scene.rootNode.enumerateChildNodes { (childNode, _) in
 			childNode.removeFromParentNode()
+			for timer in baseTimers
+			{
+				timer.invalidate()
+			}
 		}
+	}
+	
+	func finishGame()
+	{
+		dismiss(animated: false, completion: nil)
+		pauseSession()
+		gameTimer.invalidate()
 	}
 	
 	func constructVirtualObjects()
@@ -70,9 +92,7 @@ class GameViewController: UIViewController
 		guard let transform = sceneView.pointOfView?.transform else {return}
 		let location = SCNVector3(transform.m41, transform.m42, transform.m43)
 		let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
-		let base = BaseNode(position: location + (3.0*orientation))
-		base.delegate = self
-		sceneView.scene.rootNode.addChildNode(base)
+		self.newBase(position: location + (3.0*orientation))
 		gameTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(addBase), userInfo: nil, repeats: true)
 		sceneView.scene.rootNode.addChildNode(userNode)
 	}
@@ -80,17 +100,36 @@ class GameViewController: UIViewController
 	@objc func addBase()
 	{
 		DispatchQueue.main.async {
-			guard let transform = self.sceneView.pointOfView?.transform else {return}
-			let location = SCNVector3(transform.m41, transform.m42, transform.m43)
+			self.newBase(position: self.randomBasePosition())
+		}
+	}
+	
+	func randomBasePosition() -> SCNVector3
+	{
+		guard let transform = self.sceneView.pointOfView?.transform else {return SCNVector3()}
+		let location = SCNVector3(transform.m41, transform.m42, transform.m43)
+		var position = SCNVector3()
+		var diff = SCNVector3()
+		repeat
+		{
 			let x = randomNumber(firstNum: -5.0, secondNum: 5.0)
 			let y = randomNumber(firstNum: -0.5, secondNum: 0.5)
 			let z = randomNumber(firstNum: -5.0, secondNum: 5.0)
 			let randomVector = SCNVector3(x, y, z)
-			let position = location + randomVector
-			let base = BaseNode(position: position)
-			base.delegate = self
-			self.sceneView.scene.rootNode.addChildNode(base)
-		}
+			position = location + randomVector
+			diff = location - randomVector
+		} while diff.module() < 1.0
+		return position
+	}
+	
+	func newBase(position: SCNVector3)
+	{
+		let base = BaseNode(position: position, lookAt: userNode)
+		let timer = Timer.scheduledTimer(timeInterval: 4.3, target: base, selector: #selector(base.shoot), userInfo: nil, repeats: true)
+		baseTimers.append(timer)
+		base.shootTimer = timer
+		base.delegate = self
+		self.sceneView.scene.rootNode.addChildNode(base)
 	}
 	
 	// MARK: Gestures
@@ -193,7 +232,44 @@ extension GameViewController: UserNodeDelegate
 		blockView.backgroundColor = UIColor.clear
 		view.addSubview(blockView)
 		DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
-			self.dismiss(animated: false, completion: nil)
+			self.finishGame()
 		})
+	}
+}
+
+extension GameViewController: MultipeerServiceDelegate
+{
+	func connectedDevicesChanged(manager : MultipeerService, connectedDevices: [String])
+	{
+		print("QQQ")
+//		DispatchQueue.main.async {
+//			if connectedDevices.count > 0
+//			{
+//				self.multipeerLabel.text = connectedDevices.last
+//			}
+//			else
+//			{
+//				self.multipeerLabel.text = "No connectedDevices"
+//			}
+//		}
+	}
+
+	func didReceaveData(manager: MultipeerService, data: Data)
+	{
+		guard let unarchivedMapData = try? NSKeyedUnarchiver.unarchivedObject(ofClasses: [ARWorldMap.classForKeyedUnarchiver()], from: data),
+			let worldMapData = unarchivedMapData as? ARWorldMap else {
+//				self.multipeerLabel.text = "Error: could not unarchive ARWorldMap"
+				return
+		}
+
+		DispatchQueue.main.async {
+			self.restartSession(worldMapData)
+//			let configuration = ARWorldTrackingConfiguration()
+//
+//			configuration.initialWorldMap = worldMapData
+//			configuration.planeDetection = .horizontal
+//			self.lblMessage.text = "Previous world map loaded"
+//			self.sceneView.session.run(configuration)
+		}
 	}
 }
